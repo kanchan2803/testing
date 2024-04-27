@@ -25,7 +25,8 @@ uploaded_file = st.file_uploader("Upload image:",type=["jpg","png","jpeg"])
 frame_placeholder = st.empty()
 
 if st.button("Clear Selection"):
-    st.experimental_rerun()
+    st.rerun
+    # st.experimental_rerun()
 
 
 if uploaded_file is not None:
