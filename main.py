@@ -1,7 +1,8 @@
 import pytesseract
 import cv2
 # from click import capture_image
-pytesseract.pytesseract.tesseract_cmd = r'/usr/local/bin/pytesseract'
+pytesseract.pytesseract.tesseract_cmd = r'C:/Program Files/Tesseract-OCR/tesseract.exe'
+
 # pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
 
 myconfig = r"--psm 11 --oem 3"
