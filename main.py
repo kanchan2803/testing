@@ -1,30 +1,44 @@
 import pytesseract
 import cv2
-#from click import capture_image
+from cap import capture_image
 #pytesseract.pytesseract.tesseract_cmd = r'C:/Program Files/Tesseract-OCR/tesseract.exe'
 
 myconfig = r"--psm 11 --oem 3"
 
 def extract_text(image_path):
+
+  #Loading image in CV2 format
   img = cv2.imread(image_path)
 
-  # cv2.imshow("img",img)
-  # cv2.waitKey(0)
+  #Image preprocessing
   gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+  cv2.imwrite("temp/gray.png", gray)
+  blur = cv2.GaussianBlur(gray, (7,7), 0)
+  cv2.imwrite("temp/blur.png", blur)
+
+  thresh = cv2.threshold(blur, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
+  kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (3,13))
+  dilate = cv2.dilate(thresh, kernel, iterations=1)
+
+  #Finding Contours for creating boundaries
+  cnts = cv2.findContours(dilate, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+  cnts = cnts[0] if len(cnts) == 2 else cnts[1]
+  cnts = sorted(cnts, key=lambda x: cv2.boundingRect(x)[0])
+
+  for c in cnts:
+    x, y, w, h = cv2.boundingRect(c)
+    if h > 50 and w > 10:
+      cv2.rectangle(img, (x,y), (x+w, y+h), (36,200,12), 2)
+
+  cv2.imshow("Image With Boxes", img)
+  cv2.waitKey(0)
+  cv2.imwrite("temp/boxes.png", img)
 
   # Text extraction
   text = pytesseract.image_to_string(gray,config=myconfig)
 
-  height, width, _ = img.shape
-
-  boxes = pytesseract.image_to_boxes(img, config=myconfig)
-
-  for box in boxes.splitlines():
-    box = box.split(" ")
-    img = cv2.rectangle(img, (int(box[1]), height-int(box[2])), (int(box[3]), height-int(box[4])), (0,200,0), 2)
-
   print("Extracted Text:\n", text)
-  return img,text
+  return img, text
 
-# capture_image()
-# extract_text("captured_image.jpg")
+# img_loc = capture_image()
+# img, text = extract_text(img_loc)
