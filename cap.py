@@ -26,4 +26,4 @@ def capture_image():
     
   cam.release()
   cv2.destroyAllWindows()
-
+  return "captured_image.jpg"
