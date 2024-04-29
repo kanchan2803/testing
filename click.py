@@ -1,36 +1,62 @@
 import cv2
 import numpy as np
 import streamlit as st
+from annotated_text import annotated_text
 import main
 import cap
 from PIL import Image
 
 #ui
+annotated_text(("Naive","bEES"))
 st.title("Text Recognition from Image")
 
 #for camera input
-start_camera = st.button("Start Camera", key="start_camera")
-cam_placeholder = st.empty()
+st.header("Camera Input")
+pic = st.camera_input("Capture image")
 
-if start_camera:
-    img_loc = cap.capture_image()
-    processed_image, text = main.extract_text(img_loc)
-    cam_placeholder.image(processed_image, caption='Processed Image')
-    st.write("Extracted Text: ", text)
+if pic is not None:
+    bytes_data = pic.read()
+
+    np_array = np.frombuffer(bytes_data,np.uint8)
+
+    image = cv2.imdecode(np_array,cv2.IMREAD_COLOR)
+
+    cv2.imwrite("cap_img.jpg",image)
+
+    one,two =st.columns(2)
+    with one:
+        st.image(image, caption='Uploaded Image')
+        st.write("Image saved successfully.")
+    
+    processed_image, text = main.extract_text("cap_img.jpg")
+    with two:
+        st.image(processed_image, caption='Processed Image')
+        st.write("Image Processed.")
+    
+    st.subheader("Extracted Text:")
+    st.code(text)
+
+st.divider()
+
+
+# if start_camera:
+#     cap.capture_image()
+#     processed_image, text = main.extract_text("captured_image.jpg")
+#     cam_placeholder.image(processed_image, caption='Processed Image')
+#     st.write("Extracted Text:", text)
 
 
 #add to upload img from user
+st.header("File Input")
+
 uploaded_file = st.file_uploader("Upload image:",type=["jpg","png","jpeg"]) 
 
-frame_placeholder = st.empty()
-
-if st.button("Clear Selection"):
-    st.rerun
-    # st.experimental_rerun()
-
+if uploaded_file is None:
+    st.write("NO image is Uploaded!!")
 
 if uploaded_file is not None:
     # Use PIL to open the uploaded image
+    # image = Image.open(uploaded_file)
     bytes_data = uploaded_file.read()
 
     # Convert bytes to a NumPy array
@@ -42,11 +68,21 @@ if uploaded_file is not None:
     # Save the image to a specified location
     temp_image_path="captured_image.jpg"
     cv2.imwrite(temp_image_path,image)
+    # image.save(temp_image_path)
     
+    #creating columns
+    one,two =st.columns(2)
+
     # Display the uploaded image
-    st.image(image, caption='Uploaded Image')
-    st.write("Image saved successfully.")
+    with one:
+        st.image(image, caption='Uploaded Image')
+        st.write("Image saved successfully.")
+    
     processed_image, text = main.extract_text(temp_image_path)
-    frame_placeholder.image(processed_image, caption='Processed Image')
-    st.write("Extracted Text:", text)
+    with two:
+        st.image(processed_image, caption='Processed Image')
+        st.write("Image Processed.")
+    
+    st.subheader("Extracted Text:")
+    st.code(text)
 
