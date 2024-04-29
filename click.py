@@ -2,7 +2,6 @@ import cv2
 import numpy as np
 import streamlit as st
 import main
-import cap
 from PIL import Image
 
 #ui
@@ -10,7 +9,9 @@ st.title("Text Recognition from Image")
 
 #for camera input
 st.header("Camera Input")
-pic = st.camera_input("Capture image")
+start_camera = st.button("Start Camera")
+if start_camera:
+    pic = st.camera_input("Capture image")
 
 if pic is not None:
     bytes_data = pic.read()
