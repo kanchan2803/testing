@@ -9,9 +9,8 @@ st.title("Text Recognition from Image")
 
 #for camera input
 st.header("Camera Input")
-start_camera = st.button("Start Camera")
-if start_camera:
-    pic = st.camera_input("Capture image")
+
+pic = st.camera_input("Capture image")
 
 if pic is not None:
     bytes_data = pic.read()
