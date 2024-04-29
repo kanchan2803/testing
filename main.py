@@ -1,7 +1,7 @@
 import pytesseract
 import cv2
-from cap import capture_image
-#pytesseract.pytesseract.tesseract_cmd = r'C:/Program Files/Tesseract-OCR/tesseract.exe'
+# from click import capture_image
+# pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
 
 myconfig = r"--psm 11 --oem 3"
 
@@ -30,8 +30,8 @@ def extract_text(image_path):
     if h > 50 and w > 10:
       cv2.rectangle(img, (x,y), (x+w, y+h), (36,200,12), 2)
 
-  cv2.imshow("Image With Boxes", img)
-  cv2.waitKey(0)
+  # cv2.imshow("Image With Boxes", img)
+  # cv2.waitKey(0)
   cv2.imwrite("temp/boxes.png", img)
 
   # Text extraction
@@ -39,6 +39,3 @@ def extract_text(image_path):
 
   print("Extracted Text:\n", text)
   return img, text
-
-# img_loc = capture_image()
-# img, text = extract_text(img_loc)
