@@ -1,13 +1,11 @@
 import cv2
 import numpy as np
 import streamlit as st
-from annotated_text import annotated_text
 import main
 import cap
 from PIL import Image
 
 #ui
-annotated_text(("Naive","bEES"))
 st.title("Text Recognition from Image")
 
 #for camera input
