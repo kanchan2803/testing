@@ -26,6 +26,10 @@ Make sure you have these libraries installed in your Python environment before r
    ```
 3. [Download](https://github.com/tesseract-ocr/tesseract) and install Tesseract OCR. Make sure to add the Tesseract binary path to the script (`main.py`) where indicated.
 
+### Tesseract Path:
+
+- Edit the line pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe' in app.py to point to the correct path of your Tesseract executable on your system.
+
 ## Usage
 Run the application using the following command:
 ```
@@ -42,10 +46,6 @@ Once the Streamlit server starts, you can access the application via your web br
 - Click on the "File Input" section to upload an image from your local machine.
 - Once uploaded, the image will be displayed, and text will be extracted from it.
 - The extracted text will be shown below the processed image.
-
-### Tesseract Path:
-
-- Edit the line pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe' in app.py to point to the correct path of your Tesseract executable on your system.
 
 ## Folder Structure
 - **temp/**: Temporary directory to store intermediate image files during processing.
