@@ -38,7 +38,8 @@ streamlit run click.py
 Once the Streamlit server starts, you can access the application via your web browser.
 
 ### Camera Input
-- Click on the "Camera Input" section to capture an image using your device's camera.
+- Go to the "Camera Input" section to use upload image in real time.
+- Click on `Take Photo` to capture an image using your device's camera.
 - Once captured, the image will be displayed, and text will be extracted from it.
 - The extracted text will be shown below the processed image.
 
