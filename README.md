@@ -44,6 +44,7 @@ Once the Streamlit server starts, you can access the application via your web br
 
 ### File Input
 - Click on the "File Input" section to upload an image from your local machine.
+- Supported formats include: .jpg,.jpeg & .png
 - Once uploaded, the image will be displayed, and text will be extracted from it.
 - The extracted text will be shown below the processed image.
 
