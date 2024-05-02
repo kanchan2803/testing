@@ -1,6 +1,14 @@
 # Text Detection from Images using OpenCV, Tesseract, and Streamlit
 
-This repository contains code for a simple application to detect text from images using Python libraries OpenCV, Tesseract, and Streamlit. The application allows users to upload images or capture them via camera input and extracts text present in the images.
+This repository contains code for a simple application to detect text from images using Python libraries OpenCV for image processing, Tesseract for Optical Character Recognition (OCR), and Streamlit for creating a user-friendly web application. The application allows users to upload images or capture them via camera input and extracts text present in the images.
+
+## Features:
+
+- Text extraction from uploaded images (JPG, PNG, JPEG)
+- Camera input for real-time text capture
+- Image preprocessing for improved OCR accuracy (grayscale ->conversion, Gaussian blurring, thresholding)
+- Text bounding box visualization
+- Extracted text displayed in a code block
 
 ## Requirements
 - Python 3.x
@@ -34,6 +42,10 @@ Once the Streamlit server starts, you can access the application via your web br
 - Click on the "File Input" section to upload an image from your local machine.
 - Once uploaded, the image will be displayed, and text will be extracted from it.
 - The extracted text will be shown below the processed image.
+
+### Tesseract Path:
+
+- Edit the line pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe' in app.py to point to the correct path of your Tesseract executable on your system.
 
 ## Folder Structure
 - **temp/**: Temporary directory to store intermediate image files during processing.
