@@ -52,8 +52,11 @@ Once the Streamlit server starts, you can access the application via your web br
 - **main.py**: Main Python script containing the text extraction logic.
 - **requirements.txt**: File containing the required Python libraries.
 
+## Authors
+- [Mohammad Danish Sheikh](https://github.com/Danish811) (GitHub: Danish811)
+- [Kanchan Dixit](https://github.com/kanchan2803) (GitHub: kanchan2803)
+
 ## Contributions
 Contributions to improve the functionality, efficiency, or documentation of this application are welcome. Feel free to submit a pull request with your changes.
 
-## License
-This project is licensed under the [MIT License](LICENSE).
+## Thankyou!
