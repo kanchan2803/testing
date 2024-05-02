@@ -29,7 +29,7 @@ Make sure you have these libraries installed in your Python environment before r
 ## Usage
 Run the application using the following command:
 ```
-streamlit run main.py
+streamlit run click.py
 ```
 Once the Streamlit server starts, you can access the application via your web browser.
 
