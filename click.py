@@ -23,7 +23,7 @@ if pic is not None:
 
     one,two =st.columns(2)
     with one:
-        st.image(image, caption='Uploaded Image')
+        st.image(pic, caption='Uploaded Image')
         st.write("Image saved successfully.")
     
     processed_image, text = main.extract_text("cap_img.jpg")
@@ -73,7 +73,7 @@ if uploaded_file is not None:
 
     # Display the uploaded image
     with one:
-        st.image(image, caption='Uploaded Image')
+        st.image(uploaded_file, caption='Uploaded Image')
         st.write("Image saved successfully.")
     
     processed_image, text = main.extract_text(temp_image_path)
